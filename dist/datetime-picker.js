@@ -1,6 +1,6 @@
 // https://github.com/Gillardo/bootstrap-ui-datetime-picker
 // Version: 2.5.4
-// Released: 2017-01-23 
+// Released: 2017-04-18 
 angular.module('ui.bootstrap.datetimepicker', ['ui.bootstrap.dateparser', 'ui.bootstrap.position'])
     .constant('uiDatetimePickerConfig', {
         dateFormat: 'yyyy-MM-dd HH:mm',
@@ -175,7 +175,7 @@ angular.module('ui.bootstrap.datetimepicker', ['ui.bootstrap.dateparser', 'ui.bo
                 // watch attrs - NOTE: minDate and maxDate are used with datePicker and timePicker.  By using the minDate and maxDate
                 // with the timePicker, you can dynamically set the min and max time values.  This cannot be done using the min and max values
                 // with the timePickerOptions
-
+                // add a solution to set time picker options min and max.
                 angular.forEach(['minDate', 'maxDate', 'initDate'], function (key) {
                     if ($scope.datepickerOptions[key]) {
                         if (key == 'minDate') {
@@ -236,7 +236,6 @@ angular.module('ui.bootstrap.datetimepicker', ['ui.bootstrap.dateparser', 'ui.bo
                     else
                         ngModel.$formatters.push(readAsFormatter);
                 }
-
                 // Detect changes in the view from the text box
                 ngModel.$viewChangeListeners.push(function () {
                     if ($scope.timepickerOptions.min) {
@@ -248,7 +247,8 @@ angular.module('ui.bootstrap.datetimepicker', ['ui.bootstrap.dateparser', 'ui.bo
                         startTime.setHours(startHour);
                         startTime.setMinutes(starMinutes);
                         $scope.timepickerOptions.min = startTime;
-                    }
+
+                    }  
                     if ($scope.timepickerOptions.max) {
                         var endHour = new Date($scope.timepickerOptions.max).getHours(),
                             endMinutes = new Date($scope.timepickerOptions.max).getMinutes(),
@@ -259,6 +259,7 @@ angular.module('ui.bootstrap.datetimepicker', ['ui.bootstrap.dateparser', 'ui.bo
                         endTime.setMinutes(endMinutes);
                         $scope.timepickerOptions.max = endTime;
                     }
+
                     $scope.date = parseDateString(ngModel.$viewValue);
                 });
 
